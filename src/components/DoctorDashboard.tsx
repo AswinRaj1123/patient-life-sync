@@ -1,10 +1,10 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, Users, FileText, Clock, LogOut, Plus, Stethoscope } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import DoctorPatientRecords from "./DoctorPatientRecords";
 
 interface DoctorDashboardProps {
   user: any;
@@ -133,7 +133,7 @@ const DoctorDashboard = ({ user, onLogout }: DoctorDashboardProps) => {
 
         {/* Main Content */}
         <Tabs defaultValue="appointments" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 bg-white/80 backdrop-blur-sm border border-blue-100">
+          <TabsList className="grid w-full grid-cols-4 bg-white/80 backdrop-blur-sm border border-blue-100">
             <TabsTrigger value="appointments" className="flex items-center space-x-2">
               <Calendar className="w-4 h-4" />
               <span>Today's Schedule</span>
@@ -141,6 +141,10 @@ const DoctorDashboard = ({ user, onLogout }: DoctorDashboardProps) => {
             <TabsTrigger value="patients" className="flex items-center space-x-2">
               <Users className="w-4 h-4" />
               <span>My Patients</span>
+            </TabsTrigger>
+            <TabsTrigger value="records" className="flex items-center space-x-2">
+              <FileText className="w-4 h-4" />
+              <span>Patient Records</span>
             </TabsTrigger>
             <TabsTrigger value="reports" className="flex items-center space-x-2">
               <FileText className="w-4 h-4" />
@@ -203,6 +207,10 @@ const DoctorDashboard = ({ user, onLogout }: DoctorDashboardProps) => {
                 </div>
               </CardContent>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="records">
+            <DoctorPatientRecords />
           </TabsContent>
 
           <TabsContent value="reports">

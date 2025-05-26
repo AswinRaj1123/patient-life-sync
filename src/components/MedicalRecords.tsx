@@ -1,12 +1,16 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Download, Eye, Calendar, User } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import BloodTestResults from "./BloodTestResults";
+import ChestXRayView from "./ChestXRayView";
+import PrescriptionView from "./PrescriptionView";
 
 const MedicalRecords = () => {
+  const [selectedRecord, setSelectedRecord] = useState<string | null>(null);
+  
   const [records] = useState([
     {
       id: 1,
@@ -15,7 +19,8 @@ const MedicalRecords = () => {
       date: "2024-01-10",
       doctor: "Dr. Sarah Johnson",
       status: "Normal",
-      fileSize: "2.4 MB"
+      fileSize: "2.4 MB",
+      viewType: "blood-test"
     },
     {
       id: 2,
@@ -24,7 +29,8 @@ const MedicalRecords = () => {
       date: "2024-01-08",
       doctor: "Dr. Michael Chen",
       status: "Clear",
-      fileSize: "8.1 MB"
+      fileSize: "8.1 MB",
+      viewType: "chest-xray"
     },
     {
       id: 3,
@@ -33,7 +39,8 @@ const MedicalRecords = () => {
       date: "2024-01-05",
       doctor: "Dr. Sarah Johnson",
       status: "Active",
-      fileSize: "180 KB"
+      fileSize: "180 KB",
+      viewType: "prescription"
     },
     {
       id: 4,
@@ -42,7 +49,8 @@ const MedicalRecords = () => {
       date: "2024-01-03",
       doctor: "Dr. Michael Chen",
       status: "Complete",
-      fileSize: "1.2 MB"
+      fileSize: "1.2 MB",
+      viewType: "report"
     },
     {
       id: 5,
@@ -51,7 +59,8 @@ const MedicalRecords = () => {
       date: "2023-12-28",
       doctor: "Dr. Sarah Johnson",
       status: "Follow-up Required",
-      fileSize: "3.7 MB"
+      fileSize: "3.7 MB",
+      viewType: "consultation"
     }
   ]);
 
@@ -86,6 +95,27 @@ const MedicalRecords = () => {
         return '📄';
     }
   };
+
+  const handleViewRecord = (viewType: string) => {
+    setSelectedRecord(viewType);
+  };
+
+  const handleBackToList = () => {
+    setSelectedRecord(null);
+  };
+
+  // Render specific record view
+  if (selectedRecord === "blood-test") {
+    return <BloodTestResults onBack={handleBackToList} />;
+  }
+  
+  if (selectedRecord === "chest-xray") {
+    return <ChestXRayView onBack={handleBackToList} />;
+  }
+  
+  if (selectedRecord === "prescription") {
+    return <PrescriptionView onBack={handleBackToList} />;
+  }
 
   return (
     <Card className="bg-white/80 backdrop-blur-sm border-blue-100">
@@ -133,7 +163,7 @@ const MedicalRecords = () => {
                     <Button 
                       size="sm" 
                       variant="outline"
-                      onClick={() => toast({ title: "Opening preview..." })}
+                      onClick={() => handleViewRecord(record.viewType)}
                     >
                       <Eye className="w-4 h-4" />
                     </Button>
