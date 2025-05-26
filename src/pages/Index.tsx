@@ -35,15 +35,12 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
-              <Plus className="w-5 h-5 text-white" />
-            </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-              HealthSync
-            </h1>
+      <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-40">        <div className="container mx-auto px-4 py-4 flex justify-between items-center">          <div className="flex items-center space-x-2">
+            <img 
+              src="/Logo - Health.png" 
+              alt="HealthSync Logo" 
+              className="w-16 h-16 object-contain"
+            />
           </div>
           <div className="space-x-4">
             <Button 
@@ -180,12 +177,12 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4">
-        <div className="container mx-auto text-center">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
-              <Plus className="w-5 h-5 text-white" />
-            </div>
+      <footer className="bg-gray-900 text-white py-12 px-4">        <div className="container mx-auto text-center">          <div className="flex items-center justify-center space-x-2 mb-4">
+            <img 
+              src="/Logo - Health.png" 
+              alt="HealthSync Logo" 
+              className="w-16 h-16 object-contain"
+            />
             <h4 className="text-2xl font-bold">HealthSync</h4>
           </div>
           <p className="text-gray-400 mb-4">
